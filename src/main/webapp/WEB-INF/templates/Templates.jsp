@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,25 +19,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/Object.js">
-    </script>
-    <script type="text/javascript" src="js/Init.js">
-    </script>
-    <script type="text/javascript" src="js/Functions.js">
-    </script>
-    <script type="text/javascript" src="js/Exit.js">
-    </script>
-    <script type="text/javascript">
-        LoadArr();
-    </script>
-
     <title>Шаблоны оплаты</title>
 </head>
 <body class="menu">
 <header>
     <div id="header_h">
-        <script type="text/javascript" src="js/Menu.js">
-        </script>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto"> +
+                    <li class="nav-item"><a class="nav-link" href="Score.jsp?menuId=1">Список счетов<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="Templates.jsp?menuId=2">Шаблоны оплаты<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="Statistic.jsp?menuId=3">Статистика расходов<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="SartPage.html?menuId=4" onclick="Exit()">Выйти<span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
 </header>
 <div class="container">
@@ -53,11 +51,7 @@
         </div>
 
         <div class="form-table">
-            <script type="text/javascript">
-                var txt = [];
-                WriteAllTemp(txt);
-                document.getElementsByClassName('form-table')[0].innerHTML = txt.pop();
-            </script>
+
         </div>
     </div>
 </div>

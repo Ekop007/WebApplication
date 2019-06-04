@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,25 +20,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/Object.js">
-    </script>
-    <script type="text/javascript" src="js/Init.js">
-    </script>
-    <script type="text/javascript" src="js/Exit.js">
-    </script>
-    <script type="text/javascript" src="js/Functions.js">
-    </script>
-    <script type="text/javascript">
-        LoadArr();
-    </script>
-
     <title>Расходы</title>
 </head>
 <body class="menu">
     <header>
         <div id="header_h">
-            <script type="text/javascript" src="js/Menu.js">
-            </script>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto"> +
+                        <li class="nav-item"><a class="nav-link" href="Score.jsp?menuId=1">Список счетов<span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="Templates.jsp?menuId=2">Шаблоны оплаты<span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="Statistic.jsp?menuId=3">Статистика расходов<span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="SartPage.html?menuId=4" onclick="Exit()">Выйти<span class="sr-only">(current)</span></a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     </header>
     <div class="container">
@@ -56,11 +55,13 @@
             </div>
         </div>
         <div class="table-form">
-            <script type="text/javascript">
-                var txt = [];
-                WriteStat(txt);
-                document.getElementsByClassName('table-form')[0].innerHTML = txt.pop();
-            </script>
+            <c:forEach items="${transactions}" var="transaction">
+                <div class="row">
+                    <div class="col">  <!-- <img src="'+money[tran.from].url + '" alt = ""> -->
+                         <h5>${transaction.}</h5>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
     </div>
 </body>

@@ -41,6 +41,8 @@ public class MoneyBag
         return cash;
     }
 
+    public String getCashStr() { return Float.toString(cash); }
+
     public void addCash(float cost)
     {
         cash += cost;
@@ -55,6 +57,8 @@ public class MoneyBag
     {
         return id;
     }
+
+    public String getIdStr() { return Long.toString(id); }
 
     public String getCode() { return code; }
 

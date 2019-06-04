@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,40 +20,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/Object.js">
-    </script>
-    <script type="text/javascript" src="js/Init.js">
-    </script>
-    <script type="text/javascript" src="js/Functions.js">
-    </script>
-    <script type="text/javascript" src="js/Exit.js">
-    </script>
-    <script type="text/javascript">
-        LoadArr();
-        localStorage.curTemp = -1;
-        function SaveCurTemp()
-        {
-            var from = document.getElementsByClassName('from')[0].value;
-            var to = document.getElementsByClassName('to')[0].value;
-            var cash = document.getElementsByClassName('cash')[0].value;
-            if (localStorage.curTemp < 0 || localStorage.curTemp > arrUsers[cur].tempsArr.length - 1)
-            {
-                AddTempl(from, to, cash);
-            }
-            else
-            {
-                ChangeTemp(from, to, cash);
-            }
-        }
-    </script>
-
     <title> Шаблон оплаты </title>
 </head>
 <body class="menu">
 <header>
     <div id="header_h">
-        <script type="text/javascript" src="js/Menu.js">
-        </script>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto"> +
+                    <li class="nav-item"><a class="nav-link" href="Score.jsp">Список счетов<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="Templates.jsp">Шаблоны оплаты<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="Statistic.jsp">Статистика расходов<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="Exit()">Выйти<span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
 </header>
 <br>
@@ -78,7 +61,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary btn-block" onclick=" SaveCurTemp(); GoToPage('Templates.jsp')"> Сохранить </button>
+                    <button type="submit" class="btn btn-primary btn-block" > Сохранить </button>
                 </div>
             </div>
             <div class="row">

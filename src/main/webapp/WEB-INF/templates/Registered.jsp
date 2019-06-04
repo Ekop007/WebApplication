@@ -1,8 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="css/Style.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -18,12 +21,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/Object.js">
-    </script>
-    <script type="text/javascript" src="js/Init.js">
-    </script>
-    <script type="text/javascript" src="js/Functions.js">
-    </script>
 
     <title>Регистрация</title>
 </head>
@@ -64,7 +61,14 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                                     </div>
-                                    <input name="login" class="form-control" placeholder="Придумайте логин" type="text" required>
+                                    <% if (request.getAttribute("LoginErr") != null && (int)request.getAttribute("LoginErr") > 0)
+                                    {
+                                        out.println("<input name=\"login\" class=\"form-control\" placeholder=\"Данный логин занят\" type=\"text\" required>");
+                                    }
+                                    else
+                                    {
+                                        out.println("<input name=\"login\" class=\"form-control\" placeholder=\"Придумайте логин\" type=\"text\" required>");
+                                    } %>
                                 </div> <!-- input-group.// -->
                             </div> <!-- form-group// -->
                             <div class="form-group">
@@ -73,6 +77,14 @@
                                         <span class="input-group-text"> <i class=" fa fa-envelope"></i> </span>
                                     </div>
                                     <input name="email" class="form-control" placeholder="Введите email" type="email" required>
+                                    <% if (request.getAttribute("LoginErr") != null && (int)request.getAttribute("EmailErr") > 0)
+                                    {
+                                        out.println("<input name=\"login\" class=\"form-control\" placeholder=\"Данный почтовый адрес занят\" type=\"text\" required>");
+                                    }
+                                    else
+                                    {
+                                        out.println("<input name=\"login\" class=\"form-control\" placeholder=\"Введите email\" type=\"text\" required>");
+                                    } %>
                                 </div> <!-- input-group.// -->
                             </div> <!-- form-group// -->
                             <div class="form-group">

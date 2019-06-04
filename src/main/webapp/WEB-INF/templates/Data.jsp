@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,41 +19,22 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/Object.js">
-    </script>
-    <script type="text/javascript" src="js/Exit.js">
-    </script>
-    <script type="text/javascript" src="js/Init.js">
-    </script>
-    <script type="text/javascript" src="js/Functions.js">
-    </script>
-    <script type="text/javascript">
-        localStorage.curStorage = -1;
-        LoadArr();
-        function SaveStorage()
-        {
-            var name = document.getElementsByClassName('name')[0].value;
-            var number = document.getElementsByClassName('number')[0].value;
-            var type = document.getElementsByClassName('type')[0].value;
-            var cash = document.getElementsByClassName('cash')[0].value;
-            if (localStorage.curStorage < 0 || localStorage.curStorage > arrUsers[cur].moneyStorage.length - 1)
-            {
-                AddMoneyStorage(name, number, type, cash);
-            }
-            else
-            {
-                ChangeMoneyStorage(name, number, type, cash);
-            }
-        }
-    </script>
 
     <title>Счет</title>
 </head>
 <body class="menu">
 <header>
     <div id="header_h">
-        <script type="text/javascript" src="js/Menu.js">
-        </script>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto"> +
+                    <li class="nav-item"><a class="nav-link" href="Score.jsp">Список счетов<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="Templates.jsp">Шаблоны оплаты<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="Statistic.jsp">Статистика расходов<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="Exit()">Выйти<span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
 </header>
 <br>
@@ -72,7 +54,7 @@
             </script>
         </div>
         <br>
-        <form class="form-signin">
+        <form class="form-signin" method="post">
             <div class="row">
                 <div class="col">
                 </div>

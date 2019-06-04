@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<%@ page import="ru.eltech.sapr.web.app.model.MoneyBag" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,26 +22,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/Object.js">
-    </script>
-    <script type="text/javascript" src="js/Exit.js">
-    </script>
-    <script type="text/javascript" src="js/Init.js">
-    </script>
-    <script type="text/javascript" src="js/Functions.js">
-    </script>
-    <script type="text/javascript">
-        LoadArr();
-        localStorage.curStorage = 0;
-    </script>
-
     <title>Список счетов</title>
 </head>
 <body class="menu">
 <header>
     <div id="header_h">
-        <script type="text/javascript" src="js/Menu.js">
-        </script>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto"> +
+                    <li class="nav-item"><a class="nav-link" href="Score.jsp?menuId=1">Список счетов<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="Templates.jsp?menuId=2">Шаблоны оплаты<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="Statistic.jsp?menuId=3">Статистика расходов<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="SartPage.html?menuId=4" onclick="Exit()">Выйти<span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
 </header>
 <br>
@@ -51,16 +50,23 @@
                 <h3 style="text-align: center"> Все счета </h3>
             </div>
             <div class="col">
-                <button type="submit" class="btn btn-primary btn-block" onclick="localStorage.curStorage  = -1; GoToPage('Data.html')">  Добавить счет  </button>
+                <form method ="post">
+                    <button type="submit" class="btn btn-primary btn-block" method="post" name="t1?tb='-1'">  Добавить счет  </button>
+                </form>
             </div>
-        </div>
-
         <div class="form-table">
-            <script type="text/javascript">
-                var txt = [];
-                WriteAllStorages(txt);
-                document.getElementsByClassName('form-table')[0].innerHTML = txt.pop();
-            </script>
+            <%
+                List<MoneyBag> list = (List<MoneyBag>)(request.getAttribute("moneyBags"));
+                for (MoneyBag moneyBag: list) {
+                    out.println("<form method=\"post\" >");
+                    out.println("<div class=\"row\" style=\"border-style: double\">");
+                    out.println("<div class=\"col\" style=\"text-align: center; background-color: white\"></div>");
+                    out.println("<div class=\"col\" style=\"align-items: center; justify-content: center; display: flex\">");
+                    out.println("<p style=\"align-items: center\"> Номер: " + moneyBag.getCode() + "<br> Денег на счету: " + moneyBag.getCashStr() + "</p></div>");
+                    out.println("<div class=\"col\" style=\"align-items: center; justify-content: center; display: flex\">");
+                    out.println("<button type=\"submit\" class=\"btn btn-primary btn-block\" name=\"bt?change=" + moneyBag.getIdStr() + "\"> Изменить  </button></div></div></form>");
+                }
+            %>
         </div>
     </div>
 </div>

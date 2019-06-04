@@ -1,4 +1,6 @@
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -16,30 +18,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/Object.js">
-    </script>
-    <script type="text/javascript" src="js/Init.js">
-    </script>
-    <script type="text/javascript" src="js/Functions.js">
-    </script>
-    <script type="text/javascript">
-        LoadArr();
-        function GetValues() {
-                var name = document.getElementsByClassName("form-control")[0].value;
-                var pas = document.getElementsByClassName("form-control")[1].value;
-                CheckIn(name, pas);
-                if (localStorage.t === 1) {
-                    GoToPage('Score.html');
-                    document.location.href = 'Score.html';
-                }
-            }
-
-        function Go() {
-            GoToPage('Score.html');
-                document.location.href = 'Score.html';
-        }
-    </script>
-
     <title>Вход</title>
 </head>
 
@@ -47,7 +25,7 @@
 <div class="container" id ="idbg">
     <br>
     <div class="container">
-        <form class="form-signin">
+        <form class="form-signin" method="post">
             <div class="row">
                 <div class="col"> <br> <br> <br> </div>
             </div>
@@ -58,12 +36,13 @@
                         <h4 class="card-title text-center mb-4 mt-1">Войдите в свой аккаунт</h4>
                         <hr>
                         <form>
+                            <>
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                                     </div>
-                                    <input name="" class="form-control" placeholder="Email or login" type="email" required>
+                                    <input name="email_or_login" class="form-control" placeholder="Email or login" type="email" required>
                                 </div> <!-- input-group.// -->
                             </div> <!-- form-group// -->
                             <div class="form-group">
@@ -71,7 +50,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                     </div>
-                                    <input class="form-control" placeholder="******" type="password">
+                                    <input name="password" class="form-control" placeholder="******" type="password">
                                 </div> <!-- input-group.// -->
                             </div> <!-- form-group// -->
                             <div class="form-group">

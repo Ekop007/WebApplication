@@ -1,5 +1,5 @@
 package ru.eltech.sapr.web.app.servlets;
-import com.sun.jdi.event.MonitorWaitedEvent;
+
 import ru.eltech.sapr.web.app.exception.UserServiceException;
 import ru.eltech.sapr.web.app.model.MoneyBag;
 import ru.eltech.sapr.web.app.model.Transaction;
@@ -20,13 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/Registered.jsp")
-public class RegistrationServlet extends HttpServlet
+@WebServlet("/Sing.jsp")
+public class SignInServlet extends HttpServlet
 {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher;
-        if (req.getAttribute("Err") != null)
+        if (req.getAttribute("Err") != null && (int)req.getAttribute("Err") == 1)
         {
             requestDispatcher = req.getRequestDispatcher("Registered.jsp");
         }
@@ -42,49 +42,34 @@ public class RegistrationServlet extends HttpServlet
         requestDispatcher.forward(req, resp);
     }
 
-
-        @Override
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             UserService service = (UserService) getServletContext().getAttribute(UserService.SERVICE_NAME);
-            String login = req.getParameter("login");
-            String email = req.getParameter("email");
-            String name = req.getParameter("name");
-            String surname = req.getParameter("surname");
-            String pass1 = req.getParameter("pass1");
-            String pass2 = req.getParameter("pass2");
-            if (pass1 == pass2)
+            String email_or_login = req.getParameter("email_or_login");
+            String password = req.getParameter("password");
+            List<User> result1 = service.getUsers().stream()
+                    .filter(user -> user.getLogin().contains(email_or_login))
+                    .filter(user -> user.getPassword().contains(password))
+                    .collect(Collectors.toCollection(ArrayList::new));
+            List<User> result2 = service.getUsers().stream()
+                    .filter(user -> user.getEmail().contains(email_or_login))
+                    .filter(user -> user.getPassword().contains(password))
+                    .collect(Collectors.toCollection(ArrayList::new));
+            if (result1.isEmpty() && result2.isEmpty())
             {
-                List<User> result1 = service.getUsers().stream()
-                        .filter(user -> user.getLogin().contains(login))
-                        .collect(Collectors.toCollection(ArrayList::new));
-                List<User> result2 = service.getUsers().stream()
-                        .filter(user -> user.getEmail().contains(email))
-                        .collect(Collectors.toCollection(ArrayList::new));
-                if (result1.isEmpty() && result2.isEmpty())
-                {
-                    User user = service.createUser(name, surname, email, pass1, UserType.User, login);
-                    req.setAttribute("UserId", user.getId());
-                    req.setAttribute("EmailErr", 0);
-                    req.setAttribute("LoginErr", 0);
-                }
-                else
-                {
-                    if (!result1.isEmpty())
-                    {
-                        req.setAttribute("LoginErr", 1);
-                    }
-                    if (!result2.isEmpty())
-                    {
-                        req.setAttribute("EmailErr", 1);
-                    }
-                    req.setAttribute("Error", 1);
-                }
+                req.setAttribute("Err", 1);
             }
-            else
-            {
-                req.setAttribute("PassErr", 1);
-                req.setAttribute("Error", 1);
+            else {
+                if (!result1.isEmpty())
+                {
+                    req.setAttribute("UserId", result1.get(0).getId());
+                }
+                if (!result2.isEmpty())
+                {
+                    req.setAttribute("UserId", result2.get(0).getId());
+                }
+                    req.setAttribute("Error", 0);
             }
             doGet(req, resp);
         } catch (UserServiceException e) {
@@ -92,5 +77,4 @@ public class RegistrationServlet extends HttpServlet
         }
 
     }
-
 }
