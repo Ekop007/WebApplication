@@ -1,5 +1,4 @@
 package ru.eltech.sapr.web.app.servlets;
-import com.sun.jdi.event.MonitorWaitedEvent;
 import ru.eltech.sapr.web.app.exception.UserServiceException;
 import ru.eltech.sapr.web.app.model.MoneyBag;
 import ru.eltech.sapr.web.app.model.Transaction;
@@ -20,15 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/Registered.jsp")
+@WebServlet("/Registered")
 public class RegistrationServlet extends HttpServlet
 {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher;
-        if (req.getAttribute("Err") != null)
+        if (req.getAttribute("Err") == null)
         {
-            requestDispatcher = req.getRequestDispatcher("Registered.jsp");
+            requestDispatcher = req.getRequestDispatcher("/Transaction/Registered.jsp");
         }
         else {
             MoneyBagService mbService = (MoneyBagService) getServletContext().getAttribute(MoneyBagService.SERVICE_NAME);
@@ -37,7 +36,7 @@ public class RegistrationServlet extends HttpServlet
             List<Transaction> transactionList = tService.getTransaction((int)req.getAttribute("UserId"));
             req.setAttribute("transactions", transactionList);
             req.setAttribute("moneyBags", moneyBagList);
-            requestDispatcher = req.getRequestDispatcher("Statistic.jsp");
+            requestDispatcher = req.getRequestDispatcher("/Transaction/Statistic.jsp");
         }
         requestDispatcher.forward(req, resp);
     }
@@ -67,28 +66,32 @@ public class RegistrationServlet extends HttpServlet
                     req.setAttribute("UserId", user.getId());
                     req.setAttribute("EmailErr", 0);
                     req.setAttribute("LoginErr", 0);
+                    RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/Transaction/rRegistered.jsp");
+                    requestDispatcher.forward(req, resp);
                 }
-                else
-                {
-                    if (!result1.isEmpty())
-                    {
+                else {
+                    if (!result1.isEmpty()) {
                         req.setAttribute("LoginErr", 1);
                     }
-                    if (!result2.isEmpty())
-                    {
+                    if (!result2.isEmpty()) {
                         req.setAttribute("EmailErr", 1);
                     }
                     req.setAttribute("Error", 1);
+                    RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/Transaction/rRegistered.jsp");
+                    requestDispatcher.forward(req, resp);
                 }
             }
             else
             {
                 req.setAttribute("PassErr", 1);
                 req.setAttribute("Error", 1);
+                RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/Transaction/rRegistered.jsp");
+                requestDispatcher.forward(req, resp);
             }
-            doGet(req, resp);
         } catch (UserServiceException e) {
             resp.sendError(500, "Unable to create contact");
+            RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/Transaction/rRegistered.jsp");
+            requestDispatcher.forward(req, resp);
         }
 
     }

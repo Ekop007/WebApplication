@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
                         <li class="nav-item"><a class="nav-link" href="Score.jsp?menuId=1">Список счетов<span class="sr-only">(current)</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="Templates.jsp?menuId=2">Шаблоны оплаты<span class="sr-only">(current)</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="Statistic.jsp?menuId=3">Статистика расходов<span class="sr-only">(current)</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="SartPage.html?menuId=4" onclick="Exit()">Выйти<span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="../WEB-INF/templates/SartPage.html?menuId=4" onclick="Exit()">Выйти<span class="sr-only">(current)</span></a></li>
                     </ul>
                 </div>
             </nav>
@@ -58,7 +58,7 @@
             <c:forEach items="${transactions}" var="transaction">
                 <div class="row">
                     <div class="col">  <!-- <img src="'+money[tran.from].url + '" alt = ""> -->
-                         <h5>${transaction.}</h5>
+                         <h5>${transaction.fromID}</h5>
                     </div>
                 </div>
             </c:forEach>

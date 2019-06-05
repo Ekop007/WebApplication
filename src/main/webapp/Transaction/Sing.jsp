@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <link href="css/Style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -57,7 +57,7 @@
                                 <button type="submit" class="btn btn-primary btn-block" onclick="GetValues(); Go()"> Войти  </button>
                             </div> <!-- form-group// -->
                             <p class="text-center"><a href="#" class="btn">Забыли пароль?</a></p>
-                            <p class="text-center"><a href="Registered.jsp" class="btn">Регистрация</a></p>
+                            <p class="text-center"><a href="/Registered" class="btn">Регистрация</a></p>
                         </form>
                     </article>
                 </div> <!-- card.// -->

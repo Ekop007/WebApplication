@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html lang="en">
@@ -25,7 +25,7 @@
     <title>Регистрация</title>
 </head>
 
-<body class="bggreen">
+<body bgcolor="green">
 <div class="container">
     <br>
     <div class="container">
@@ -76,7 +76,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class=" fa fa-envelope"></i> </span>
                                     </div>
-                                    <input name="email" class="form-control" placeholder="Введите email" type="email" required>
+                                   <!-- <input name="email" class="form-control" placeholder="Введите email" type="email" required>-->
                                     <% if (request.getAttribute("LoginErr") != null && (int)request.getAttribute("EmailErr") > 0)
                                     {
                                         out.println("<input name=\"login\" class=\"form-control\" placeholder=\"Данный почтовый адрес занят\" type=\"text\" required>");
@@ -106,7 +106,7 @@
                             <div class="form-group">
                                 <button name="regSubmit" type="submit" class="btn btn-primary btn-block" value="active"> Регистрация  </button>
                             </div> <!-- form-group// -->
-                            <p class="text-center"> Есть аккаунт? <br><a href="Sing.jsp" class="btn"> Войти </a></p>
+                            <p class="text-center"> Есть аккаунт? <br><a href="/Sing" class="btn"> Войти </a></p>
                         </form>
                     </article>
                 </div> <!-- card.// -->

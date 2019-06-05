@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/Sing.jsp")
+@WebServlet("/Sing")
 public class SignInServlet extends HttpServlet
 {
     @Override
@@ -28,17 +28,19 @@ public class SignInServlet extends HttpServlet
         RequestDispatcher requestDispatcher;
         if (req.getAttribute("Err") != null && (int)req.getAttribute("Err") == 1)
         {
-            requestDispatcher = req.getRequestDispatcher("Registered.jsp");
-        }
-        else {
             MoneyBagService mbService = (MoneyBagService) getServletContext().getAttribute(MoneyBagService.SERVICE_NAME);
             TransactionService tService = (TransactionService) getServletContext().getAttribute(TransactionService.SERVICE_NAME);
             List<MoneyBag> moneyBagList = mbService.getMoneyBags((int)req.getAttribute("UserId"));
             List<Transaction> transactionList = tService.getTransaction((int)req.getAttribute("UserId"));
             req.setAttribute("transactions", transactionList);
             req.setAttribute("moneyBags", moneyBagList);
-            requestDispatcher = req.getRequestDispatcher("Statistic.jsp");
+            requestDispatcher = req.getRequestDispatcher("/Transaction/Statistic.jsp");
         }
+        else {
+
+            requestDispatcher = req.getRequestDispatcher("/Transaction/Sing.jsp");
+        }
+
         requestDispatcher.forward(req, resp);
     }
 

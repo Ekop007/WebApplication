@@ -20,32 +20,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/Statistic.jsp")
+@WebServlet("/Statistic")
 public class AllTransactionsServlet extends HttpServlet
 {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher;
-        String menu = req.getParameter("menuId");
+        /*String menu = req.getParameter("menuId");
         switch (menu)
         {
             case "1":
-                requestDispatcher = req.getRequestDispatcher("Score.jsp");
+                requestDispatcher = req.getRequestDispatcher("/Transaction/Score.jsp");
                 break;
             case "2":
-                requestDispatcher = req.getRequestDispatcher("Templates.jsp");
+                requestDispatcher = req.getRequestDispatcher("/Transaction/Templates.jsp");
                 break;
             case "3":
-                requestDispatcher = req.getRequestDispatcher("Statistic.jsp");
+                requestDispatcher = req.getRequestDispatcher("/Transaction/Statistic.jsp");
                 break;
             case "4":
                 req.setAttribute("UserId", -1);
-                requestDispatcher = req.getRequestDispatcher("SartPage.html");
+                requestDispatcher = req.getRequestDispatcher("/Transaction/SartPage.html");
                 break;
             default:
                 requestDispatcher = req.getRequestDispatcher(req.getRequestURI());
                 break;
-        }
+        }*/
+        requestDispatcher = req.getRequestDispatcher("/Transaction/Statistic.jsp");
         requestDispatcher.forward(req, resp);
     }
 

@@ -2,21 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My super project!</title>
-</head>
-<body>
-<!-- header -->
-<div>
-    <h1>Super app!</h1>
-</div>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/Style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<div>       <!-- content -->
-    <div>    <!-- buttons holder -->
-        <button onclick="location.href='/list'">List users</button>
-        <button onclick="location.href='/add'">Add tester</button>
-        <button onclick="location.href='/addDota'">Add Dota</button>
-        <button onclick="location.href='/reg'">Register</button>
+    <script type="text/javascript" src="js/Functions.js">
+    </script>
+    <title>Учет личных финансов</title>
+    <style>
+        body {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <h3 class="navbar-brand">Сайт учета личных финансов</h3>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="Sing.jsp">Войти<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Registered.jsp">Зарегестрироваться<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
     </div>
-</div>
+</nav>
+<br><br><br><br>
+<main class="container">
+    <h3 class="textpos"> Данный сайт был создан для упрощения ведения учета
+        финансовых операций. Сайт имеет следующие возможности.</h3>
+    <ol class="rectangle">
+        <li><a href="#">Добавление и удаление банковских карт и сберегательных счетов</a></li>
+        <li><a href="#">Редактирование банковских карт и сберегательных счетов</a></li>
+        <li><a href="#">Управление расходами</a></li>
+        <li><a href="#">Редактирование шаблонов операций</a></li>
+        <li><a href="#">Просмотр всех операций</a></li>
+    </ol>
+</main>
 </body>
 </html>

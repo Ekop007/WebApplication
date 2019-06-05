@@ -1,4 +1,4 @@
-<%@ page import="ru.eltech.sapr.web.app.model.MoneyBag" %>
+<%@ page import="ru.eltech.sapr.web.app.model.MoneyBag" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,8 +6,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="css/Style.css" rel="stylesheet">
-    <link href="css/Menu.css" rel="stylesheet">
+    <link href="../Transaction/css/Style.css" rel="stylesheet">
+    <link href="../Transaction/css/Menu.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -33,7 +33,7 @@
                     <li class="nav-item"><a class="nav-link" href="Score.jsp?menuId=1">Список счетов<span class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="Templates.jsp?menuId=2">Шаблоны оплаты<span class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="Statistic.jsp?menuId=3">Статистика расходов<span class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="SartPage.html?menuId=4" onclick="Exit()">Выйти<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="../WEB-INF/templates/SartPage.html?menuId=4" onclick="Exit()">Выйти<span class="sr-only">(current)</span></a></li>
                 </ul>
             </div>
         </nav>
@@ -54,6 +54,7 @@
                     <button type="submit" class="btn btn-primary btn-block" method="post" name="t1?tb='-1'">  Добавить счет  </button>
                 </form>
             </div>
+        </div>
         <div class="form-table">
             <%
                 List<MoneyBag> list = (List<MoneyBag>)(request.getAttribute("moneyBags"));
